@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Greenville First Ward Young Women</title>
+<style>
+  :root {
+    --bg: #FFF8F3;
+    --pink: #FF9EB5;
+    --pink-soft: #FFE4EC;
+    --lilac: #C9B6E4;
+    --teal: #6FCBC4;
+    --forest: #3A6B45;
+    --forest-soft: #D4E6D9;
+    --ink: #3D3A45;
+    --muted: #9590A0;
+    --line: #F0E6E0;
+    --card: #FFFFFF;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    background: var(--bg);
+    color: var(--ink);
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .wrap {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 28px 18px 60px;
+  }
+
+  /* ===== Header ===== */
+  header {
+    text-align: center;
+    margin-bottom: 28px;
+  }
+
+  header .badge {
+    display: inline-block;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--pink);
+    background: var(--pink-soft);
+    border-radius: 999px;
+    padding: 4px 14px;
+    margin-bottom: 10px;
+  }
+
+  header h1 {
+    font-size: clamp(22px, 5vw, 32px);
+    font-weight: 800;
+    background: linear-gradient(135deg, #FF9EB5 0%, #C9B6E4 50%, #6FCBC4 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    letter-spacing: -0.02em;
+    line-height: 1.2;
+  }
+
+  /* ===== Section ===== */
+  section {
+    margin-bottom: 32px;
+  }
+
+  section h2 {
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+  .dot-pink   { background: var(--pink); }
+  .dot-lilac  { background: var(--lilac); }
+  .dot-teal   { background: var(--teal); }
+  .dot-forest { background: var(--forest); }
+
+  /* ===== Calendar ===== */
+  .cal-wrap {
+    border-radius: 16px;
+    overflow: hidden;
+    border: 1.5px solid var(--line);
+    background: var(--card);
+  }
+
+  .cal-wrap iframe {
+    display: block;
+    width: 100%;
+    height: 480px;
+    border: none;
+  }
+
+  /* ===== WhatsApp / Young Men bar ===== */
+  .quick-bar {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin-bottom: 32px;
+  }
+
+  .quick-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 14px 10px;
+    border-radius: 14px;
+    font-size: 14px;
+    font-weight: 700;
+    text-decoration: none;
+    transition: filter 0.15s, transform 0.1s;
+  }
+  .quick-btn:hover  { filter: brightness(1.06); }
+  .quick-btn:active { transform: scale(0.97); }
+
+  .btn-pink {
+    background: linear-gradient(135deg, #FF9EB5 0%, #C9B6E4 100%);
+    color: #fff;
+  }
+
+  .btn-forest {
+    background: linear-gradient(135deg, #6FCBC4 0%, #4A9B8E 100%);
+    color: #fff;
+  }
+
+  /* ===== Grid ===== */
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: 12px;
+  }
+
+  /* ===== Link Card ===== */
+  .link-card {
+    display: block;
+    background: var(--card);
+    border: 1.5px solid var(--line);
+    border-radius: 14px;
+    padding: 16px 16px 14px;
+    text-decoration: none;
+    color: var(--ink);
+    transition: box-shadow 0.15s, transform 0.1s, border-color 0.15s;
+  }
+  .link-card:hover {
+    box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+    transform: translateY(-2px);
+    border-color: var(--pink);
+  }
+  .link-card:active { transform: scale(0.98); }
+
+  .link-card .title {
+    font-size: 14px;
+    font-weight: 700;
+    line-height: 1.3;
+  }
+
+  .link-card .desc {
+    font-size: 12px;
+    color: var(--muted);
+    margin-top: 3px;
+  }
+
+  .link-card.placeholder {
+    opacity: 0.45;
+    pointer-events: none;
+  }
+
+  /* ===== Sign-up Groups ===== */
+  .signup-list {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+
+  .signup-group {
+    background: var(--card);
+    border: 1.5px solid var(--line);
+    border-radius: 16px;
+    padding: 18px 18px 14px;
+  }
+
+  .signup-group .group-title {
+    font-size: 15px;
+    font-weight: 700;
+    margin-bottom: 10px;
+  }
+
+  .signup-group .group-desc {
+    font-size: 13px;
+    color: var(--muted);
+    margin-bottom: 14px;
+  }
+
+  .signup-btns {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .signup-btn {
+    display: inline-block;
+    padding: 9px 18px;
+    border-radius: 999px;
+    background: var(--pink-soft);
+    color: var(--ink);
+    font-size: 13px;
+    font-weight: 700;
+    text-decoration: none;
+    transition: background 0.15s, transform 0.1s;
+  }
+  .signup-btn:hover  { background: var(--pink); color: #fff; }
+  .signup-btn:active { transform: scale(0.97); }
+
+  /* empty state */
+  .signup-empty {
+    text-align: center;
+    padding: 28px 16px;
+    color: var(--muted);
+    font-size: 14px;
+    background: var(--card);
+    border: 1.5px dashed var(--line);
+    border-radius: 16px;
+  }
+  .signup-empty .emoji { font-size: 28px; display: block; margin-bottom: 8px; }
+
+  /* ===== Collapsible sections ===== */
+  details {
+    background: var(--card);
+    border: 1.5px solid var(--line);
+    border-radius: 16px;
+    overflow: hidden;
+    margin-bottom: 10px;
+  }
+
+  details[open] { box-shadow: 0 2px 12px rgba(0,0,0,0.05); }
+
+  summary {
+    padding: 16px 18px;
+    font-size: 14px;
+    font-weight: 700;
+    cursor: pointer;
+    list-style: none;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    user-select: none;
+  }
+  summary::-webkit-details-marker { display: none; }
+
+  .chev {
+    font-size: 18px;
+    color: var(--muted);
+    transition: transform 0.2s;
+    display: inline-block;
+  }
+  details[open] .chev { transform: rotate(90deg); }
+
+  details .grid {
+    padding: 0 16px 16px;
+  }
+
+  /* ===== Footer ===== */
+  footer {
+    text-align: center;
+    font-size: 13px;
+    color: var(--muted);
+    margin-top: 48px;
+  }
+
+  .heart { color: var(--pink); }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header>
+    <div class="badge">Greenville, NC First Ward</div>
+    <h1>Young Women</h1>
+  </header>
+
+  <!-- ============ CALENDAR ============ -->
+  <section>
+    <h2><span class="dot dot-pink"></span>Activities &amp; Events</h2>
+    <div class="cal-wrap">
+      <iframe src="https://calendar.google.com/calendar/embed?src=0fb1eb42b2a4b62b7b9ebc1cc7bad8e49a8dcc42a79d75ce51efb8ad37a67fe1%40group.calendar.google.com&ctz=America%2FNew_York&showTitle=0&showNav=1&showDate=1&showPrint=0&showTabs=0&showCalendars=0&showTz=0&mode=AGENDA" frameborder="0" scrolling="no" allowtransparency="true"></iframe>
+    </div>
+  </section>
+
+  <!-- ============ NOTE ============ -->
+  <p style="text-align:center; font-size:13px; color:var(--muted); margin-top:-18px; margin-bottom:28px;">
+    ✦ Text Sister Fluckiger if something doesn't look quite right ✦
+  </p>
+  <div class="quick-bar">
+    <a class="quick-btn btn-pink" href="https://chat.whatsapp.com/JUr1Y1PrJdS4UPRiXQrpe3" target="_blank" rel="noopener">
+      Young Women WhatsApp
+    </a>
+    <a class="quick-btn btn-forest" href="https://linktr.ee/G1YoungMen" target="_blank" rel="noopener">
+      Young Men Linktree
+    </a>
+  </div>
+
+  <!-- ============ SIGN-UPS ============ -->
+  <section>
+    <h2><span class="dot dot-pink"></span>Sign-Ups</h2>
+    <div class="signup-list">
+      <!-- TEMPLATE: copy this block and fill in to add a sign-up group -->
+      <!--
+      <div class="signup-group">
+        <div class="group-title">Event Name — Date</div>
+        <div class="group-desc">Short description if needed</div>
+        <div class="signup-btns">
+          <a class="signup-btn" href="YOUR_GOOGLE_FORM_LINK" target="_blank" rel="noopener">Sign Up to Attend</a>
+          <a class="signup-btn" href="YOUR_GOOGLE_FORM_LINK" target="_blank" rel="noopener">Sign Up to Drive</a>
+        </div>
+      </div>
+      -->
+      <div class="grid">
+        <a class="link-card" href="https://docs.google.com/spreadsheets/d/1N3jpdWYW5oMd-jQrgRxRUh-5KnkU0zT61TSfZymsO0M/edit?gid=0#gid=0" target="_blank" rel="noopener">
+          <div class="title">Temple Trip Sign-Ups</div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ TEACHING YOUR LESSON ============ -->
+  <section>
+    <h2><span class="dot dot-lilac"></span>Teaching Your Lesson</h2>
+    <div class="grid">
+      <a class="link-card" href="https://www.churchofjesuschrist.org/study/manual/for-the-strength-of-youth?lang=eng" target="_blank" rel="noopener">
+        <div class="title">For the Strength of Youth</div>
+        <div class="desc">Booklet</div>
+      </a>
+      <a class="link-card" href="https://www.churchofjesuschrist.org/inspiration/magazines/ftsoy?lang=eng" target="_blank" rel="noopener">
+        <div class="title">For the Strength of Youth</div>
+        <div class="desc">Magazine</div>
+      </a>
+      <a class="link-card" href="https://drive.google.com/file/d/15YUWIg2kDKnGGWhdSRnqIH71zsbHR3sO/view?usp=sharing" target="_blank" rel="noopener">
+        <div class="title">Lesson Planning Guide</div>
+        <div class="desc">PDF</div>
+      </a>
+      <a class="link-card" href="https://www.churchofjesuschrist.org/study/manual/come-follow-me-for-home-and-church-old-testament-2026?lang=eng" target="_blank" rel="noopener">
+        <div class="title">Come, Follow Me</div>
+        <div class="desc">2026 manual</div>
+      </a>
+    </div>
+  </section>
+
+  <!-- ============ YOUTH ACTIVITIES ============ -->
+  <section>
+    <h2><span class="dot dot-teal"></span>Youth Activities</h2>
+    <div class="grid">
+      <a class="link-card" href="https://docs.google.com/spreadsheets/d/1ge4tsWCzgTeoNjNwIwRjNfJiqHdzaTG2l9F0HmxLlrY/edit?usp=sharing" target="_blank" rel="noopener">
+        <div class="title">Activity Planning Sheet</div>
+        <div class="desc">Google Sheet</div>
+      </a>
+      <a class="link-card" href="https://docs.google.com/document/d/1Q-WiMEUlV9pdRS9YX0_4sS5EnvqUSlYt44IoJYXTKys/edit?usp=sharing" target="_blank" rel="noopener">
+        <div class="title">Future Activity Brainstorm</div>
+        <div class="desc">Google Doc</div>
+      </a>
+    </div>
+  </section>
+
+  <!-- ============ RESOURCES ============ -->
+  <section>
+    <h2><span class="dot dot-lilac"></span>Resources</h2>
+    <div class="grid">
+      <a class="link-card" href="https://www.churchofjesuschrist.org/media/music/youth-and-contemporary?lang=eng" target="_blank" rel="noopener">
+        <div class="title">Youth Music Library</div>
+        <div class="desc">Songs &amp; hymns</div>
+      </a>
+      <a class="link-card" href="https://www.churchofjesuschrist.org/callings/youth/2026-youth-theme?lang=eng" target="_blank" rel="noopener">
+        <div class="title">2026 Youth Theme</div>
+        <div class="desc">This year's theme</div>
+      </a>
+      <a class="link-card" href="https://www.churchofjesuschrist.org/media/collection/youth-videos?lang=eng" target="_blank" rel="noopener">
+        <div class="title">Youth Videos</div>
+        <div class="desc">Media library</div>
+      </a>
+    </div>
+  </section>
+
+  <!-- ============ CLASS PRESIDENCY RESOURCES (collapsible) ============ -->
+  <section>
+    <h2><span class="dot dot-forest"></span>For Leaders</h2>
+
+    <details>
+      <summary>Class Presidency Resources <span class="chev">&rsaquo;</span></summary>
+      <div class="grid">
+        <a class="link-card" href="https://drive.google.com/file/d/1cUN637rqtk7LtZsvz6xC7464uLIE75nd/view?usp=sharing" target="_blank" rel="noopener">
+          <div class="title">Conducting Sheet</div>
+          <div class="desc">PDF</div>
+        </a>
+        <a class="link-card" href="https://www.churchofjesuschrist.org/bc/content/ldsorg/content/pdf/children-and-youth/PD60010390_000-Quorum-and-Class-Presidency-Agenda8.pdf" target="_blank" rel="noopener">
+          <div class="title">Presidency Meeting Agenda</div>
+          <div class="desc">PDF</div>
+        </a>
+        <a class="link-card" href="https://docs.google.com/spreadsheets/d/1ge4tsWCzgTeoNjNwIwRjNfJiqHdzaTG2l9F0HmxLlrY/edit?usp=sharing" target="_blank" rel="noopener">
+          <div class="title">Ward Youth Council Sheet</div>
+          <div class="desc">Google Sheet</div>
+        </a>
+      </div>
+    </details>
+
+    <!-- ============ ADULT LEADER RESOURCES (collapsible) ============ -->
+    <details>
+      <summary>Adult Leader Resources <span class="chev">&rsaquo;</span></summary>
+      <div class="grid">
+        <a class="link-card" href="https://trello.com/b/fINaX4CZ/yw-presidency-2026" target="_blank" rel="noopener">
+          <div class="title">Trello Board</div>
+          <div class="desc">Planning board</div>
+        </a>
+      </div>
+    </details>
+  </section>
+
+  <footer>
+    This is not an official website of The Church of Jesus Christ of Latter-day Saints.
+  </footer>
+
+</div>
+</body>
+</html>
